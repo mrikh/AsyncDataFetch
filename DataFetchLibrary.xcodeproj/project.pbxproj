@@ -18,6 +18,7 @@
 		461A0F4F1E8D80AF00FD3512 /* UIAlertView+Api.m in Sources */ = {isa = PBXBuildFile; fileRef = 461A0F4C1E8D80AF00FD3512 /* UIAlertView+Api.m */; };
 		461A0F501E8D80AF00FD3512 /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 461A0F4E1E8D80AF00FD3512 /* UIColor+HexString.m */; };
 		461A0F531E8D80CE00FD3512 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 461A0F521E8D80CE00FD3512 /* HomeViewController.m */; };
+		461A0F571E8D89E200FD3512 /* PinterestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 461A0F561E8D89E200FD3512 /* PinterestModel.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,8 @@
 		461A0F4E1E8D80AF00FD3512 /* UIColor+HexString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+HexString.m"; sourceTree = "<group>"; };
 		461A0F511E8D80CE00FD3512 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		461A0F521E8D80CE00FD3512 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		461A0F551E8D89E200FD3512 /* PinterestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinterestModel.h; sourceTree = "<group>"; };
+		461A0F561E8D89E200FD3512 /* PinterestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinterestModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +113,7 @@
 		461A0F121E8D806300FD3512 /* DataFetchLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				461A0F541E8D865300FD3512 /* Model */,
 				461A0F4A1E8D80A800FD3512 /* Extras */,
 				461A0F491E8D809600FD3512 /* Library */,
 				461A0F161E8D806300FD3512 /* AppDelegate.h */,
@@ -169,6 +173,15 @@
 				461A0F4E1E8D80AF00FD3512 /* UIColor+HexString.m */,
 			);
 			name = Extras;
+			sourceTree = "<group>";
+		};
+		461A0F541E8D865300FD3512 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				461A0F551E8D89E200FD3512 /* PinterestModel.h */,
+				461A0F561E8D89E200FD3512 /* PinterestModel.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,6 +325,7 @@
 				461A0F481E8D809400FD3512 /* HTTPHandler.m in Sources */,
 				461A0F4F1E8D80AF00FD3512 /* UIAlertView+Api.m in Sources */,
 				461A0F531E8D80CE00FD3512 /* HomeViewController.m in Sources */,
+				461A0F571E8D89E200FD3512 /* PinterestModel.m in Sources */,
 				461A0F151E8D806300FD3512 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -552,6 +566,7 @@
 				461A0F3F1E8D806300FD3512 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		461A0F401E8D806300FD3512 /* Build configuration list for PBXNativeTarget "DataFetchLibraryTests" */ = {
 			isa = XCConfigurationList;
@@ -560,6 +575,7 @@
 				461A0F421E8D806300FD3512 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		461A0F431E8D806300FD3512 /* Build configuration list for PBXNativeTarget "DataFetchLibraryUITests" */ = {
 			isa = XCConfigurationList;
@@ -568,6 +584,7 @@
 				461A0F451E8D806300FD3512 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

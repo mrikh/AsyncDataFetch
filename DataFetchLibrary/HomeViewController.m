@@ -115,7 +115,7 @@
     }
 }
 
-#pragma mark - Private
+#pragma mark - Private Methods
 
 -(void)showApiFailAlert{
     
