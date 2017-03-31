@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+@class PinterestLinksModel;
 @class CategoryLinksModel;
 @class ProfileImageModel;
 @class LinksModel;
@@ -31,11 +32,15 @@
 
 @property (strong, nonatomic) UserModel *user;
 
-@property (strong, nonatomic) NSArray *current_user_collections;
+@property (strong, nonatomic) NSMutableArray *current_user_collections;
 
 @property (strong, nonatomic) UrlsModel *urls;
 
 @property (strong, nonatomic) NSMutableArray *categories;
+
+@property (strong, nonatomic) PinterestLinksModel *links;
+
+-(instancetype)initWithDictionary:(NSDictionary *)dict;
 
 @end
 
@@ -55,6 +60,8 @@
 
 @property (strong, nonatomic) LinksModel *linksModel;
 
+-(instancetype)initWithDictionary:(NSDictionary *)dict;
+
 @end
 
 #pragma mark Profile Image Model
@@ -66,6 +73,8 @@
 @property (strong, nonatomic) NSString *medium;
 
 @property (strong, nonatomic) NSString *large;
+
+-(instancetype)initWithDictionary:(NSDictionary *)dict;
 
 @end
 
@@ -80,6 +89,8 @@
 @property (strong, nonatomic) NSString *photos;
 
 @property (strong, nonatomic) NSString *likes;
+
+-(instancetype)initWithDictionary:(NSDictionary *)dict;
 
 @end
 
@@ -97,6 +108,8 @@
 
 @property (strong, nonatomic) NSString *thumb;
 
+-(instancetype)initWithDictionary:(NSDictionary *)dict;
+
 @end
 
 #pragma mark Categories Model
@@ -111,6 +124,8 @@
 
 @property (strong, nonatomic) CategoryLinksModel *links;
 
+-(instancetype)initWithDictionary:(NSDictionary *)dict;
+
 @end
 
 #pragma mark Category Links Model
@@ -120,6 +135,8 @@
 @property (strong, nonatomic) NSString *self_link;
 
 @property (strong, nonatomic) NSString *photos;
+
+-(instancetype)initWithDictionary:(NSDictionary *)dict;
 
 @end
 
@@ -132,5 +149,7 @@
 @property (strong, nonatomic) NSString *html;
 
 @property (strong, nonatomic) NSString *download;
+
+-(instancetype)initWithDictionary:(NSDictionary *)dict;
 
 @end

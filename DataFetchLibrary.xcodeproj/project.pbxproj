@@ -19,6 +19,12 @@
 		461A0F501E8D80AF00FD3512 /* UIColor+HexString.m in Sources */ = {isa = PBXBuildFile; fileRef = 461A0F4E1E8D80AF00FD3512 /* UIColor+HexString.m */; };
 		461A0F531E8D80CE00FD3512 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 461A0F521E8D80CE00FD3512 /* HomeViewController.m */; };
 		461A0F571E8D89E200FD3512 /* PinterestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 461A0F561E8D89E200FD3512 /* PinterestModel.m */; };
+		466841271E8E3007008E30FD /* UIView+AutoConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 466841261E8E3007008E30FD /* UIView+AutoConstraint.m */; };
+		4668412C1E8E4E84008E30FD /* HomeTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4668412B1E8E4E84008E30FD /* HomeTableViewCell.m */; };
+		466841351E8E710E008E30FD /* RequestImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 466841341E8E710E008E30FD /* RequestImageView.m */; };
+		466841381E8E7C13008E30FD /* HomeCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 466841371E8E7C13008E30FD /* HomeCollectionViewCell.m */; };
+		4668413B1E8E85A6008E30FD /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4668413A1E8E85A6008E30FD /* DetailViewController.m */; };
+		4668413F1E8E88B9008E30FD /* MRActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 4668413E1E8E88B9008E30FD /* MRActivityIndicator.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +69,18 @@
 		461A0F521E8D80CE00FD3512 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		461A0F551E8D89E200FD3512 /* PinterestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinterestModel.h; sourceTree = "<group>"; };
 		461A0F561E8D89E200FD3512 /* PinterestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinterestModel.m; sourceTree = "<group>"; };
+		466841251E8E3007008E30FD /* UIView+AutoConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoConstraint.h"; sourceTree = "<group>"; };
+		466841261E8E3007008E30FD /* UIView+AutoConstraint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+AutoConstraint.m"; sourceTree = "<group>"; };
+		4668412A1E8E4E84008E30FD /* HomeTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewCell.h; sourceTree = "<group>"; };
+		4668412B1E8E4E84008E30FD /* HomeTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeTableViewCell.m; sourceTree = "<group>"; };
+		466841331E8E710E008E30FD /* RequestImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestImageView.h; sourceTree = "<group>"; };
+		466841341E8E710E008E30FD /* RequestImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestImageView.m; sourceTree = "<group>"; };
+		466841361E8E7C13008E30FD /* HomeCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeCollectionViewCell.h; sourceTree = "<group>"; };
+		466841371E8E7C13008E30FD /* HomeCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeCollectionViewCell.m; sourceTree = "<group>"; };
+		466841391E8E85A6008E30FD /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		4668413A1E8E85A6008E30FD /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		4668413D1E8E88B9008E30FD /* MRActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MRActivityIndicator.h; sourceTree = "<group>"; };
+		4668413E1E8E88B9008E30FD /* MRActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MRActivityIndicator.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,13 +131,12 @@
 		461A0F121E8D806300FD3512 /* DataFetchLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				466841241E8E2CE0008E30FD /* View Controllers */,
 				461A0F541E8D865300FD3512 /* Model */,
 				461A0F4A1E8D80A800FD3512 /* Extras */,
 				461A0F491E8D809600FD3512 /* Library */,
 				461A0F161E8D806300FD3512 /* AppDelegate.h */,
 				461A0F171E8D806300FD3512 /* AppDelegate.m */,
-				461A0F511E8D80CE00FD3512 /* HomeViewController.h */,
-				461A0F521E8D80CE00FD3512 /* HomeViewController.m */,
 				461A0F1C1E8D806300FD3512 /* Main.storyboard */,
 				461A0F1F1E8D806300FD3512 /* Assets.xcassets */,
 				461A0F211E8D806300FD3512 /* LaunchScreen.storyboard */,
@@ -167,10 +184,16 @@
 		461A0F4A1E8D80A800FD3512 /* Extras */ = {
 			isa = PBXGroup;
 			children = (
+				4668413D1E8E88B9008E30FD /* MRActivityIndicator.h */,
+				4668413E1E8E88B9008E30FD /* MRActivityIndicator.m */,
 				461A0F4B1E8D80AF00FD3512 /* UIAlertView+Api.h */,
 				461A0F4C1E8D80AF00FD3512 /* UIAlertView+Api.m */,
 				461A0F4D1E8D80AF00FD3512 /* UIColor+HexString.h */,
 				461A0F4E1E8D80AF00FD3512 /* UIColor+HexString.m */,
+				466841251E8E3007008E30FD /* UIView+AutoConstraint.h */,
+				466841261E8E3007008E30FD /* UIView+AutoConstraint.m */,
+				466841331E8E710E008E30FD /* RequestImageView.h */,
+				466841341E8E710E008E30FD /* RequestImageView.m */,
 			);
 			name = Extras;
 			sourceTree = "<group>";
@@ -182,6 +205,37 @@
 				461A0F561E8D89E200FD3512 /* PinterestModel.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		466841241E8E2CE0008E30FD /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4668413C1E8E85AB008E30FD /* Detail View Controller */,
+				466841281E8E4E51008E30FD /* Home View Controller */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		466841281E8E4E51008E30FD /* Home View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				4668412A1E8E4E84008E30FD /* HomeTableViewCell.h */,
+				4668412B1E8E4E84008E30FD /* HomeTableViewCell.m */,
+				461A0F511E8D80CE00FD3512 /* HomeViewController.h */,
+				461A0F521E8D80CE00FD3512 /* HomeViewController.m */,
+				466841361E8E7C13008E30FD /* HomeCollectionViewCell.h */,
+				466841371E8E7C13008E30FD /* HomeCollectionViewCell.m */,
+			);
+			name = "Home View Controller";
+			sourceTree = "<group>";
+		};
+		4668413C1E8E85AB008E30FD /* Detail View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				466841391E8E85A6008E30FD /* DetailViewController.h */,
+				4668413A1E8E85A6008E30FD /* DetailViewController.m */,
+			);
+			name = "Detail View Controller";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,11 +376,17 @@
 			files = (
 				461A0F501E8D80AF00FD3512 /* UIColor+HexString.m in Sources */,
 				461A0F181E8D806300FD3512 /* AppDelegate.m in Sources */,
+				466841351E8E710E008E30FD /* RequestImageView.m in Sources */,
+				466841381E8E7C13008E30FD /* HomeCollectionViewCell.m in Sources */,
+				4668412C1E8E4E84008E30FD /* HomeTableViewCell.m in Sources */,
 				461A0F481E8D809400FD3512 /* HTTPHandler.m in Sources */,
 				461A0F4F1E8D80AF00FD3512 /* UIAlertView+Api.m in Sources */,
+				4668413F1E8E88B9008E30FD /* MRActivityIndicator.m in Sources */,
 				461A0F531E8D80CE00FD3512 /* HomeViewController.m in Sources */,
 				461A0F571E8D89E200FD3512 /* PinterestModel.m in Sources */,
 				461A0F151E8D806300FD3512 /* main.m in Sources */,
+				466841271E8E3007008E30FD /* UIView+AutoConstraint.m in Sources */,
+				4668413B1E8E85A6008E30FD /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
