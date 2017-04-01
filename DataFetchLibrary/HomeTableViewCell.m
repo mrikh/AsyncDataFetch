@@ -41,6 +41,8 @@
     [super prepareForReuse];
     
     [self.activityIndicator startAnimating];
+    
+    self.imageView.image = nil;
 }
 
 @end
