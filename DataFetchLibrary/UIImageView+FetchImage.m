@@ -13,7 +13,9 @@
 
 -(void)downloadImageFromUrlString:(NSString *)urlString andOnCompletion:(void(^)(UIImage *image, NSError *error))completion{
     
-    [[HTTPHandler sharedInstance] getParsedDataFromUrlString:urlString withCompletionHandler:^(id result, NSError *error) {
+    NSString *uniqueIdentifier = [NSString stringWithFormat:@"%p", [super description]];
+    
+    [[HTTPHandler sharedInstance] getParsedDataFromUrlString:urlString andUniqueIdentifier:uniqueIdentifier withCompletionHandler:^(id result, NSError *error) {
         
         if(!error){
             
@@ -36,7 +38,9 @@
 
 -(void)cancelRequestForUrlString:(NSString *)urlString{
     
-    [[HTTPHandler sharedInstance] cancelRequestWithUrlString:urlString];
+    NSString *uniqueIdentifier = [NSString stringWithFormat:@"%p", [super description]];
+    
+    [[HTTPHandler sharedInstance] cancelRequestWithUrlString:urlString andUniqueIdentifier:uniqueIdentifier];
 }
 
 @end

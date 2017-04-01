@@ -24,12 +24,12 @@ typedef enum{
 
 +(id)sharedInstance;
 
--(void)getDataFromUrlString:(NSString *)urlString withCompletionHandler:(void(^)(NSData *result, NSError *error))completionHandler;
+-(void)getDataFromUrlString:(NSString *)urlString andUniqueIdentifier:(NSString *)uniqueIdentifier withCompletionHandler:(void(^)(NSData *result, NSError *error))completionHandler;
 
--(void)getParsedDataFromUrlString:(NSString *)urlString withCompletionHandler:(void(^)(id result, NSError *error))completionHandler;
+-(void)getParsedDataFromUrlString:(NSString *)urlString andUniqueIdentifier:(NSString *)uniqueIdentifier withCompletionHandler:(void(^)(id result, NSError *error))completionHandler;
 
 -(void)setCacheWithSize:(NSUInteger)size;
 
--(void)cancelRequestWithUrlString:(NSString *)urlString;
+-(void)cancelRequestWithUrlString:(NSString *)urlString andUniqueIdentifier:(NSString *)identifier;
 
 @end

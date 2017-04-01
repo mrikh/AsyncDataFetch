@@ -132,7 +132,7 @@
     
     NSString *urlStringToSearch = @"http://pastebin.com/raw/wgkJgazE";
     
-    [[HTTPHandler sharedInstance] getParsedDataFromUrlString:urlStringToSearch withCompletionHandler:^(id result , NSError *error) {
+    [[HTTPHandler sharedInstance] getParsedDataFromUrlString:urlStringToSearch andUniqueIdentifier:@"1" withCompletionHandler:^(id result , NSError *error) {
         
         if(!error){
             

@@ -49,9 +49,9 @@
 
 #pragma mark - Public
 
--(void)getDataFromUrlString:(NSString *)urlString withCompletionHandler:(void(^)(NSData *result, NSError *error))completionHandler{
+-(void)getDataFromUrlString:(NSString *)urlString andUniqueIdentifier:(NSString *)uniqueIdentifier withCompletionHandler:(void(^)(NSData *result, NSError *error))completionHandler{
     
-    [self sendRequestWithUrlString:urlString andHeaders:nil andBody:nil andRequestType:GET onSuccess:^(NSData *data, ContentType contentType) {
+    [self sendRequestWithUrlString:urlString andUniqueIdentifier:uniqueIdentifier andHeaders:nil andBody:nil andRequestType:GET onSuccess:^(NSData *data, ContentType contentType) {
         
         completionHandler(data,nil);
         
@@ -61,9 +61,9 @@
     }];
 }
 
--(void)getParsedDataFromUrlString:(NSString *)urlString withCompletionHandler:(void(^)(id result, NSError *error))completionHandler{
+-(void)getParsedDataFromUrlString:(NSString *)urlString andUniqueIdentifier:(NSString *)uniqueIdentifier withCompletionHandler:(void(^)(id result, NSError *error))completionHandler{
     
-    [self sendRequestWithUrlString:urlString andHeaders:nil andBody:nil andRequestType:GET onSuccess:^(NSData *data, ContentType contentType) {
+    [self sendRequestWithUrlString:urlString andUniqueIdentifier:uniqueIdentifier andHeaders:nil andBody:nil andRequestType:GET onSuccess:^(NSData *data, ContentType contentType) {
         
         id result;
         
@@ -88,16 +88,18 @@
     }];
 }
 
--(void)cancelRequestWithUrlString:(NSString *)urlString{
+-(void)cancelRequestWithUrlString:(NSString *)urlString andUniqueIdentifier:(NSString *)uniqueIdentifier{
     
     [[NSURLSession sharedSession] getAllTasksWithCompletionHandler:^(NSArray<__kindof NSURLSessionTask *> * _Nonnull tasks) {
         
         [tasks enumerateObjectsUsingBlock:^(__kindof NSURLSessionTask * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
-            if (obj.originalRequest.URL.absoluteString) {
-                <#statements#>
+            if ([obj.originalRequest.URL.absoluteString isEqualToString:urlString] && [obj.taskDescription isEqualToString:uniqueIdentifier]) {
+                
+                [obj cancel];
+                
+                *stop = YES;
             }
-            
         }];
     }];
 }
@@ -111,7 +113,7 @@
 
 #pragma mark - Private methods
 
--(NSURLSessionDataTask *)sendRequestWithUrlString:(NSString *)string andHeaders:(NSDictionary *)headers andBody:(NSDictionary *)body andRequestType:(RequestType)requestType onSuccess:(void (^)(NSData *data, ContentType contentType))success andFailure:(void (^)(NSError *error))failure{
+-(NSURLSessionDataTask *)sendRequestWithUrlString:(NSString *)string andUniqueIdentifier:(NSString *)uniqueIdentifier andHeaders:(NSDictionary *)headers andBody:(NSDictionary *)body andRequestType:(RequestType)requestType onSuccess:(void (^)(NSData *data, ContentType contentType))success andFailure:(void (^)(NSError *error))failure{
     
     MRCacheModel *tempModel = [_mrCache getModelForRequest:string];
     
@@ -152,11 +154,11 @@
         [request setHTTPBody:data];
     }
     
-    return [self sendRequest:request andOnSuccess:success andFailure:failure];
+    return [self sendRequest:request andUniqueIdentifier:uniqueIdentifier andOnSuccess:success andFailure:failure];
 }
 
 
--(NSURLSessionDataTask *)sendRequest:(NSMutableURLRequest *)request andOnSuccess:(void (^)(NSData *data, ContentType contentType))success andFailure:(void(^)(NSError *error))failure{
+-(NSURLSessionDataTask *)sendRequest:(NSMutableURLRequest *)request andUniqueIdentifier:(NSString *)identifier andOnSuccess:(void (^)(NSData *data, ContentType contentType))success andFailure:(void(^)(NSError *error))failure{
        
     NSURLSessionDataTask *sessionTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler: ^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
@@ -198,6 +200,8 @@
             }
         });
     }];
+    
+    [sessionTask setTaskDescription:identifier];
     
     [sessionTask resume];
     
