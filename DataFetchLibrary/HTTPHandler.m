@@ -13,6 +13,8 @@
 @interface HTTPHandler(){
     
     MRCache *_mrCache;
+    
+    NSMutableDictionary *_sessionDataTaskRequestsDictionary;
 }
 
 @end
@@ -42,6 +44,8 @@
         //initially 500mb
         _mrCache = [[MRCache alloc] initWithCapacity:1024 * 1024 * 500];
 //        [NSURLCache setSharedURLCache:[[NSURLCache alloc] initWithMemoryCapacity:1024 * 1024 * 500 diskCapacity:0 diskPath:@"MayankCache"]];
+        
+        _sessionDataTaskRequestsDictionary = [NSMutableDictionary new];
     }
     
     return self;
@@ -120,7 +124,7 @@
     //if found then it means it exists in cache
     if(tempModel){
             
-        success(tempModel.responseData,[self getContentTypeOfString:tempModel.contentType]);
+        success(tempModel.responseData,[self getContentTypeOfString:tempModel.content]);
         
         return nil;
     }

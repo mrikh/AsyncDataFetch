@@ -70,15 +70,11 @@
 
 - (IBAction)cancelSmallLeftAction:(UIButton *)sender {
     
-    [_activityIndicatorSmallLeft stopAnimating];
-    
     [smallLeftImageView cancelRequestForUrlString:self.backgroundImageString];
 }
 
 
 - (IBAction)cancelSmallRightAction:(UIButton *)sender {
-    
-    [_activityIndicatorSmallRight stopAnimating];
     
     [smallRightImageView cancelRequestForUrlString:self.backgroundImageString];
 }

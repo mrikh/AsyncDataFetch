@@ -10,6 +10,8 @@
 
 @interface UIImageView (FetchImage)
 
+@property (strong,nonatomic) NSString *uniqueIdentifier;
+
 -(void)downloadImageFromUrlString:(NSString *)urlString andOnCompletion:(void(^)(UIImage *image, NSError *error))completion;
 
 -(void)cancelRequestForUrlString:(NSString *)urlString;

@@ -19,8 +19,8 @@
 
 @property (strong, nonatomic) NSData *responseData;
 
-@property (assign, nonatomic) NSString *contentType;
+@property (strong, nonatomic) NSString *content;
 
--(instancetype)initWithData:(NSData *)responseData andContentSize:(NSUInteger)contentSize andContentType:(NSString *)contentType andTime:(NSTimeInterval)time andRequest:(NSString *)request;
+-(instancetype)initWithData:(NSData *)responseData andContentSize:(NSUInteger)contentSize andContentType:(NSString *)content andTime:(NSTimeInterval)time andRequest:(NSString *)request;
 
 @end

@@ -57,8 +57,6 @@
         [self.cachedArray removeObject:model];
         
         [self.cachedArray insertObject:model atIndex:0];
-        
-//        [self sortObjectsArray];
     }
     
     return model;
@@ -68,9 +66,10 @@
 
 -(MRCacheModel *)searchForModelWithUrl:(NSString *)url{
     
+    
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"request CONTAINS %@",url];
     
-    NSArray *filteredArray = [[NSArray alloc] initWithArray:[self.cachedArray filteredArrayUsingPredicate:predicate]];
+    NSArray *filteredArray = [self.cachedArray filteredArrayUsingPredicate:predicate];
     
     return [filteredArray firstObject];
 }
