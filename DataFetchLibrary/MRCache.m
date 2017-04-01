@@ -33,25 +33,32 @@
 }
 
 -(void)addIntoCache:(MRCacheModel *)objectModel{
-       
+    
+    //check if object already exists, as if user sends multiple requests, we dont want same object filling up cache
+    if([self searchForModelWithUrl:objectModel.request]){
+        
+        return;
+    }
+    
     [self addObject:objectModel];
 }
 
 -(MRCacheModel *)getModelForRequest:(NSString *)request{
     
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"request CONTAINS %@",request];
-    
-    NSArray *filteredArray = [self.cachedArray filteredArrayUsingPredicate:predicate];
-    
      //as should always return 1 object so we get first object
-    MRCacheModel *model = [filteredArray firstObject];
+    MRCacheModel *model = [self searchForModelWithUrl:request];
     
-    //if model exists, increment by 1 as we will now use this object instead of api
     if(model){
         
-        model.usageCounter += 1;
+        NSTimeInterval interval = [[NSDate date] timeIntervalSince1970];
+        
+        model.timeOfUse = interval;
     
-        [self sortObjectsArray];
+        [self.cachedArray removeObject:model];
+        
+        [self.cachedArray insertObject:model atIndex:0];
+        
+//        [self sortObjectsArray];
     }
     
     return model;
@@ -59,26 +66,24 @@
 
 #pragma mark - Private
 
-//every time object is added, we sort
+-(MRCacheModel *)searchForModelWithUrl:(NSString *)url{
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"request CONTAINS %@",url];
+    
+    NSArray *filteredArray = [[NSArray alloc] initWithArray:[self.cachedArray filteredArrayUsingPredicate:predicate]];
+    
+    return [filteredArray firstObject];
+}
+
+
 #pragma mark Sort array
 
 -(void)sortObjectsArray{
 
     //sort in descending order
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"usageCounter" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"timeOfUse" ascending:NO];
     
     [self.cachedArray sortUsingDescriptors:@[sortDescriptor]];
-    
-    //uncomment below section to confirm sorting
- /*
-    [self.cachedArray enumerateObjectsUsingBlock:^(MRCacheModel *obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        
-        NSLog(@"%@",[NSString stringWithFormat:@"%@:%ld",obj.request,obj.usageCounter]);
-        
-    }];
-    
-    NSLog(@"**********\n");
-  */
 }
 
 
@@ -87,22 +92,20 @@
     if([self shouldAddObject:object]){
         
         //this means object can be added
-        
         currentCacheSize += object.responseSize;
         
-        [self.cachedArray addObject:object];
+        [self.cachedArray insertObject:object atIndex:0];
         
     }else{
         
-        //clear cache till memory available
+        //as used objects keep getting moved to top, last object will be least recently used
         MRCacheModel *tempModel = [self.cachedArray lastObject];
-        
-        //remove from current memory
-        
+
         currentCacheSize -= tempModel.responseSize;
         
         [self.cachedArray removeObject:tempModel];
 
+        //clear cache till memory available
         [self addObject:object];
     }
 }

@@ -14,12 +14,13 @@
 
 @property (assign, nonatomic) NSUInteger responseSize;
 
-@property (assign, nonatomic) NSUInteger usageCounter;
+//since LRU we store time it was last used
+@property (assign, nonatomic) NSUInteger timeOfUse;
 
 @property (strong, nonatomic) NSData *responseData;
 
 @property (assign, nonatomic) NSString *contentType;
 
--(instancetype)initWithData:(NSData *)responseData andContentSize:(NSUInteger)contentSize andContentType:(NSString *)contentType andUsageCounter:(NSUInteger)counter andRequest:(NSString *)request;
+-(instancetype)initWithData:(NSData *)responseData andContentSize:(NSUInteger)contentSize andContentType:(NSString *)contentType andTime:(NSTimeInterval)time andRequest:(NSString *)request;
 
 @end

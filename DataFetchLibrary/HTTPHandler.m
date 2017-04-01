@@ -39,14 +39,11 @@
     
     if(self = [super init]){
         
-        //comment below line and uncomment nsurlcache to use default ios cachce THAT DOESN'T FOLLOW LRU
+        //comment below line and uncomment nsurlcache to use default ios cachce THAT MAY NOT FOLLOW LRU
         
         //initially 500mb
         _mrCache = [[MRCache alloc] initWithCapacity:1024 * 1024 * 500];
-        
 //        [NSURLCache setSharedURLCache:[[NSURLCache alloc] initWithMemoryCapacity:1024 * 1024 * 500 diskCapacity:0 diskPath:@"MayankCache"]];
-        
-        
         
         //to keep track of requests in form of session tasks
         _requestsArray = [NSMutableArray new];
@@ -166,7 +163,7 @@
 
 
 -(NSURLSessionDataTask *)sendRequest:(NSMutableURLRequest *)request andOnSuccess:(void (^)(NSData *data, ContentType contentType))success andFailure:(void(^)(NSError *error))failure{
-   
+       
     NSURLSessionDataTask *sessionTask = [[NSURLSession sharedSession] dataTaskWithRequest:request completionHandler: ^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
         
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -182,7 +179,9 @@
                         
                         //add object to dictionary
                         //as model hasn't been used even once from memory we set usageCounter 0 initially
-                        MRCacheModel *tempModel = [[MRCacheModel alloc] initWithData:data andContentSize:response.expectedContentLength andContentType:responseType andUsageCounter:0 andRequest:request.URL.absoluteString];
+                        NSTimeInterval timeInterval = [[NSDate date] timeIntervalSince1970];
+                        
+                        MRCacheModel *tempModel = [[MRCacheModel alloc] initWithData:data andContentSize:response.expectedContentLength andContentType:responseType andTime:timeInterval andRequest:request.URL.absoluteString];
                         
                         [_mrCache addIntoCache:tempModel];
                     }

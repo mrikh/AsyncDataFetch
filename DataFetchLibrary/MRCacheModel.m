@@ -10,7 +10,7 @@
 
 @implementation MRCacheModel
 
--(instancetype)initWithData:(NSData *)responseData andContentSize:(NSUInteger)contentSize andContentType:(NSString *)contentType andUsageCounter:(NSUInteger)counter andRequest:(NSString *)request{
+-(instancetype)initWithData:(NSData *)responseData andContentSize:(NSUInteger)contentSize andContentType:(NSString *)contentType andTime:(NSTimeInterval)time andRequest:(NSString *)request{
     
     if(self = [super init]){
 
@@ -22,7 +22,7 @@
         
         self.contentType = contentType;
         
-        self.usageCounter = counter;
+        self.timeOfUse = time;
     }
     
     return self;
