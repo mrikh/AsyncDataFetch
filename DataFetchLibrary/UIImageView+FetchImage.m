@@ -44,6 +44,7 @@
 }
 
 
+//Objective - C runtime - to add value to the property
 -(NSString *)uniqueIdentifier{
     
     return objc_getAssociatedObject(self, @selector(uniqueIdentifier));

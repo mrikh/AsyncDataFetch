@@ -66,7 +66,6 @@
 
 -(MRCacheModel *)searchForModelWithUrl:(NSString *)url{
     
-    
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"request CONTAINS %@",url];
     
     NSArray *filteredArray = [self.cachedArray filteredArrayUsingPredicate:predicate];

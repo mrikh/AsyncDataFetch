@@ -18,6 +18,9 @@
 		461A0F4F1E8D80AF00FD3512 /* UIAlertView+Api.m in Sources */ = {isa = PBXBuildFile; fileRef = 461A0F4C1E8D80AF00FD3512 /* UIAlertView+Api.m */; };
 		461A0F531E8D80CE00FD3512 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 461A0F521E8D80CE00FD3512 /* HomeViewController.m */; };
 		461A0F571E8D89E200FD3512 /* PinterestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 461A0F561E8D89E200FD3512 /* PinterestModel.m */; };
+		461A0F5E1E90268700FD3512 /* NavigationControllerAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 461A0F5D1E90268700FD3512 /* NavigationControllerAnimator.m */; };
+		461A0F621E90273600FD3512 /* SplitViewAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 461A0F611E90273600FD3512 /* SplitViewAnimation.m */; };
+		461A0F651E902BA300FD3512 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 461A0F641E902BA300FD3512 /* Utilities.m */; };
 		4665946B1E8F78DA008BD657 /* UIImageView+FetchImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4665946A1E8F78DA008BD657 /* UIImageView+FetchImage.m */; };
 		4665946F1E8F7E7F008BD657 /* UIView+AutoConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 4665946E1E8F7E7F008BD657 /* UIView+AutoConstraint.m */; };
 		466594751E8F821B008BD657 /* MRCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 466594741E8F821B008BD657 /* MRCache.m */; };
@@ -67,6 +70,12 @@
 		461A0F521E8D80CE00FD3512 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		461A0F551E8D89E200FD3512 /* PinterestModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinterestModel.h; sourceTree = "<group>"; };
 		461A0F561E8D89E200FD3512 /* PinterestModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinterestModel.m; sourceTree = "<group>"; };
+		461A0F5C1E90268700FD3512 /* NavigationControllerAnimator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationControllerAnimator.h; sourceTree = "<group>"; };
+		461A0F5D1E90268700FD3512 /* NavigationControllerAnimator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationControllerAnimator.m; sourceTree = "<group>"; };
+		461A0F601E90273600FD3512 /* SplitViewAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewAnimation.h; sourceTree = "<group>"; };
+		461A0F611E90273600FD3512 /* SplitViewAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitViewAnimation.m; sourceTree = "<group>"; };
+		461A0F631E902BA300FD3512 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		461A0F641E902BA300FD3512 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		466594691E8F78DA008BD657 /* UIImageView+FetchImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+FetchImage.h"; sourceTree = "<group>"; };
 		4665946A1E8F78DA008BD657 /* UIImageView+FetchImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+FetchImage.m"; sourceTree = "<group>"; };
 		4665946D1E8F7E7F008BD657 /* UIView+AutoConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoConstraint.h"; sourceTree = "<group>"; };
@@ -133,6 +142,7 @@
 			children = (
 				466841241E8E2CE0008E30FD /* View Controllers */,
 				461A0F4A1E8D80A800FD3512 /* Extras */,
+				461A0F5F1E90270B00FD3512 /* Animations */,
 				461A0F491E8D809600FD3512 /* Library */,
 				461A0F161E8D806300FD3512 /* AppDelegate.h */,
 				461A0F171E8D806300FD3512 /* AppDelegate.m */,
@@ -188,6 +198,8 @@
 				4665946C1E8F7A1F008BD657 /* Categories */,
 				4668413D1E8E88B9008E30FD /* MRActivityIndicator.h */,
 				4668413E1E8E88B9008E30FD /* MRActivityIndicator.m */,
+				461A0F631E902BA300FD3512 /* Utilities.h */,
+				461A0F641E902BA300FD3512 /* Utilities.m */,
 			);
 			name = Extras;
 			sourceTree = "<group>";
@@ -199,6 +211,17 @@
 				461A0F561E8D89E200FD3512 /* PinterestModel.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		461A0F5F1E90270B00FD3512 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				461A0F601E90273600FD3512 /* SplitViewAnimation.h */,
+				461A0F611E90273600FD3512 /* SplitViewAnimation.m */,
+				461A0F5C1E90268700FD3512 /* NavigationControllerAnimator.h */,
+				461A0F5D1E90268700FD3512 /* NavigationControllerAnimator.m */,
+			);
+			name = Animations;
 			sourceTree = "<group>";
 		};
 		4665946C1E8F7A1F008BD657 /* Categories */ = {
@@ -400,6 +423,8 @@
 			files = (
 				461A0F181E8D806300FD3512 /* AppDelegate.m in Sources */,
 				4668412C1E8E4E84008E30FD /* HomeTableViewCell.m in Sources */,
+				461A0F651E902BA300FD3512 /* Utilities.m in Sources */,
+				461A0F5E1E90268700FD3512 /* NavigationControllerAnimator.m in Sources */,
 				461A0F481E8D809400FD3512 /* HTTPHandler.m in Sources */,
 				466594751E8F821B008BD657 /* MRCache.m in Sources */,
 				461A0F4F1E8D80AF00FD3512 /* UIAlertView+Api.m in Sources */,
@@ -408,6 +433,7 @@
 				461A0F571E8D89E200FD3512 /* PinterestModel.m in Sources */,
 				4665946F1E8F7E7F008BD657 /* UIView+AutoConstraint.m in Sources */,
 				461A0F151E8D806300FD3512 /* main.m in Sources */,
+				461A0F621E90273600FD3512 /* SplitViewAnimation.m in Sources */,
 				466594791E8F836A008BD657 /* MRCacheModel.m in Sources */,
 				4668413B1E8E85A6008E30FD /* DetailViewController.m in Sources */,
 				4665946B1E8F78DA008BD657 /* UIImageView+FetchImage.m in Sources */,

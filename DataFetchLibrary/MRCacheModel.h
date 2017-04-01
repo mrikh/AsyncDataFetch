@@ -10,7 +10,7 @@
 
 @interface MRCacheModel : NSObject
 
-@property (assign, nonatomic) NSString *request;
+@property (strong, nonatomic) NSString *request;
 
 @property (assign, nonatomic) NSUInteger responseSize;
 

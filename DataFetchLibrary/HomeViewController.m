@@ -6,6 +6,7 @@
 //  Copyright © 2017 Mayank Rikh. All rights reserved.
 //
 
+#import "NavigationControllerAnimator.h"
 #import "UIImageView+FetchImage.h"
 #import "UIView+AutoConstraint.h"
 #import "DetailViewController.h"
@@ -14,6 +15,7 @@
 #import "UIAlertView+Api.h"
 #import "PinterestModel.h"
 #import "HTTPHandler.h"
+#import "Utilities.h"
 
 @interface HomeViewController ()<UIAlertViewDelegate, UITableViewDelegate, UITableViewDataSource>{
     
@@ -25,10 +27,6 @@
 }
 
 @end
-
-#define initialGridViewWidth 30.0f
-
-#define visiblePart 30.0f
 
 @implementation HomeViewController
 
@@ -55,6 +53,13 @@
     [self fetchRequest];
 }
 
+
+-(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setDelegate:[NavigationControllerAnimator sharedInstance]];
+}
 
 - (void)didReceiveMemoryWarning {
     
@@ -115,6 +120,8 @@
 #pragma mark Delgate
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    [self setupValuesForAnimationForCell:[mainTableView cellForRowAtIndexPath:indexPath]];
     
     [self performSegueWithIdentifier:@"showDetailViewController" sender:@(indexPath.row)];
 }
@@ -182,6 +189,25 @@
     apiAlert.delegate = self;
     
     [apiAlert show];
+}
+
+-(void)setupValuesForAnimationForCell:(UITableViewCell *)cell{
+    
+    self.splittingHeight = (CGRectGetMaxY(cell.frame) + CGRectGetMinY(mainTableView.frame)) - mainTableView.contentOffset.y;
+    
+    UIImage *imageScreen = [[Utilities sharedInstance] takeSnapshot:self.view];
+    
+    imageScreen = [[Utilities sharedInstance] scaleDownImage:imageScreen toSize:[UIScreen mainScreen].bounds.size];
+    
+    float scale = imageScreen.scale;
+    
+    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width * scale, self.splittingHeight * scale)];
+    
+    UIView *bottomView = [[UIView alloc] initWithFrame:CGRectMake(0, self.splittingHeight, [UIScreen mainScreen].bounds.size.width * scale, [UIScreen mainScreen].bounds.size.height - self.splittingHeight * scale)];
+    
+    self.topImage = [[Utilities sharedInstance] clipImage:imageScreen withRect:topView.frame];
+    
+    self.bottomImage = [[Utilities sharedInstance] clipImage:imageScreen withRect:bottomView.frame];
 }
 
 @end

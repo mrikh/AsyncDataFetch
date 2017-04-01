@@ -10,4 +10,10 @@
 
 @interface HomeViewController : UIViewController
 
+@property (assign, nonatomic) CGFloat splittingHeight;
+
+@property (strong, nonatomic) UIImage *topImage;
+
+@property (strong, nonatomic) UIImage *bottomImage;
+
 @end

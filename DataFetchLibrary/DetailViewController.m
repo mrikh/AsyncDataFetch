@@ -10,12 +10,16 @@
 #import "DetailViewController.h"
 #import "MRActivityIndicator.h"
 #import "HTTPHandler.h"
+#import "Utilities.h"
 
 @interface DetailViewController (){
     
     __weak IBOutlet UIImageView *mainImageView;
     __weak IBOutlet UIImageView *smallLeftImageView;
     __weak IBOutlet UIImageView *smallRightImageView;
+    __weak IBOutlet UIButton *cancelFirstButton;
+    __weak IBOutlet UIButton *cancelSecondButton;
+    __weak IBOutlet UIButton *startRequestButton;
     
     MRActivityIndicator *_activityIndicatorMain, *_activityIndicatorSmallLeft, *_activityIndicatorSmallRight;
 }
@@ -33,12 +37,21 @@
     _activityIndicatorSmallLeft = [[MRActivityIndicator alloc] initOnView:smallLeftImageView withText:@"Downloading left small..."];
     
     _activityIndicatorSmallRight = [[MRActivityIndicator alloc] initOnView:smallRightImageView withText:@"Downloading right small..."];
+    
+    [self setupViews:mainImageView];
+    [self setupViews:smallLeftImageView];
+    [self setupViews:smallRightImageView];
+    [self setupViews:cancelFirstButton];
+    [self setupViews:startRequestButton];
+    [self setupViews:cancelSecondButton];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+
 
 #pragma mark - Button Action
 
@@ -71,15 +84,26 @@
 - (IBAction)cancelSmallLeftAction:(UIButton *)sender {
     
     [smallLeftImageView cancelRequestForUrlString:self.backgroundImageString];
+    
+    [[Utilities sharedInstance] createPopUpLabelOnView:self.view withText:@"Image download cancelled"];
 }
 
 
 - (IBAction)cancelSmallRightAction:(UIButton *)sender {
     
     [smallRightImageView cancelRequestForUrlString:self.backgroundImageString];
+    
+    [[Utilities sharedInstance] createPopUpLabelOnView:self.view withText:@"Image download cancelled"];
 }
 
 #pragma mark - Private
+
+-(void)setupViews:(UIView *)view{
+    
+    [view.layer setBorderColor:[UIColor whiteColor].CGColor];
+    
+    [view.layer setBorderWidth:1.0f];
+}
 
 -(void)downloadRequestForImageView:(UIImageView *)imageView andOnCompletion:(void(^)(void))completion{
 
