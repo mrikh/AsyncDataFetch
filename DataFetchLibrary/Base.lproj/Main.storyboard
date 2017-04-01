@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -126,11 +127,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N9q-t5-LfC">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="553"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="301.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HoM-gz-2gO">
-                                <rect key="frame" x="0.0" y="553" width="187.5" height="50"/>
+                                <rect key="frame" x="0.0" y="553" width="150" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="FJ2-NL-WAd"/>
                                 </constraints>
@@ -141,33 +142,75 @@
                                     <action selector="startRequest:" destination="w2E-sN-WN7" eventType="touchUpInside" id="z7d-i7-ifT"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SVk-tm-YT5">
-                                <rect key="frame" x="187.5" y="553" width="187.5" height="50"/>
-                                <state key="normal" title="Cancel Request">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="cancelRequest:" destination="w2E-sN-WN7" eventType="touchUpInside" id="I99-Ih-eRM"/>
-                                </connections>
-                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oNW-2f-ClQ" userLabel="Cancel View">
+                                <rect key="frame" x="150" y="553" width="225" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mRX-OZ-Ngx" userLabel="Cancel Request 1">
+                                        <rect key="frame" x="-0.5" y="0.0" width="112.5" height="50"/>
+                                        <state key="normal" title="Small Cancel 1">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelSmallLeftAction:" destination="w2E-sN-WN7" eventType="touchUpInside" id="UpR-So-cVX"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w8g-US-tc3" userLabel="Cancel Request 2">
+                                        <rect key="frame" x="112" y="0.0" width="112.5" height="50"/>
+                                        <state key="normal" title="Small Cancel 2">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelSmallRightAction:" destination="w2E-sN-WN7" eventType="touchUpInside" id="1s0-51-aXa"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="mRX-OZ-Ngx" secondAttribute="bottom" id="1rr-4C-aNP"/>
+                                    <constraint firstItem="w8g-US-tc3" firstAttribute="width" secondItem="mRX-OZ-Ngx" secondAttribute="width" id="3zL-qD-jD7"/>
+                                    <constraint firstItem="w8g-US-tc3" firstAttribute="top" secondItem="oNW-2f-ClQ" secondAttribute="top" id="BoA-Bo-wEM"/>
+                                    <constraint firstItem="w8g-US-tc3" firstAttribute="leading" secondItem="mRX-OZ-Ngx" secondAttribute="trailing" id="L7R-wF-NxE"/>
+                                    <constraint firstAttribute="bottom" secondItem="w8g-US-tc3" secondAttribute="bottom" id="Vr7-Yn-FxZ"/>
+                                    <constraint firstItem="w8g-US-tc3" firstAttribute="height" secondItem="mRX-OZ-Ngx" secondAttribute="height" id="hYp-ea-wt6"/>
+                                    <constraint firstItem="mRX-OZ-Ngx" firstAttribute="leading" secondItem="oNW-2f-ClQ" secondAttribute="leading" id="j3e-QD-vcP"/>
+                                    <constraint firstItem="mRX-OZ-Ngx" firstAttribute="top" secondItem="oNW-2f-ClQ" secondAttribute="top" id="lm4-Zb-7Lk"/>
+                                    <constraint firstAttribute="trailing" secondItem="w8g-US-tc3" secondAttribute="trailing" id="rey-Tf-yAT"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gqb-jg-J2T">
+                                <rect key="frame" x="0.0" y="301.5" width="187.5" height="251.5"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Jai-6I-e08">
+                                <rect key="frame" x="187.5" y="301.5" width="187.5" height="251.5"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="SVk-tm-YT5" firstAttribute="leading" secondItem="HoM-gz-2gO" secondAttribute="trailing" id="04W-at-Vey"/>
                             <constraint firstItem="N9q-t5-LfC" firstAttribute="top" secondItem="Ray-9B-dv6" secondAttribute="bottom" id="1HE-6i-8zd"/>
+                            <constraint firstItem="gqb-jg-J2T" firstAttribute="leading" secondItem="2jt-TN-w7R" secondAttribute="leading" id="5bA-nj-21Y"/>
+                            <constraint firstItem="gqb-jg-J2T" firstAttribute="top" secondItem="N9q-t5-LfC" secondAttribute="bottom" id="84g-rL-d8F"/>
+                            <constraint firstItem="Jai-6I-e08" firstAttribute="height" secondItem="gqb-jg-J2T" secondAttribute="height" id="CLP-nV-HDh"/>
+                            <constraint firstItem="Jai-6I-e08" firstAttribute="leading" secondItem="gqb-jg-J2T" secondAttribute="trailing" id="ESg-EW-oAH"/>
                             <constraint firstAttribute="trailing" secondItem="N9q-t5-LfC" secondAttribute="trailing" id="EYf-ef-h88"/>
-                            <constraint firstItem="CXN-Qc-2Jt" firstAttribute="top" secondItem="SVk-tm-YT5" secondAttribute="bottom" id="Eht-9N-Rm2"/>
+                            <constraint firstItem="oNW-2f-ClQ" firstAttribute="height" secondItem="HoM-gz-2gO" secondAttribute="height" id="Lu3-Vz-IMl"/>
                             <constraint firstItem="CXN-Qc-2Jt" firstAttribute="top" secondItem="HoM-gz-2gO" secondAttribute="bottom" id="PTX-14-ysU"/>
-                            <constraint firstAttribute="trailing" secondItem="SVk-tm-YT5" secondAttribute="trailing" id="Q3C-uR-4eS"/>
-                            <constraint firstItem="SVk-tm-YT5" firstAttribute="top" secondItem="N9q-t5-LfC" secondAttribute="bottom" id="ced-t5-xUM"/>
+                            <constraint firstItem="HoM-gz-2gO" firstAttribute="width" secondItem="2jt-TN-w7R" secondAttribute="width" multiplier="0.4" id="R0T-TP-iyX"/>
+                            <constraint firstItem="CXN-Qc-2Jt" firstAttribute="top" secondItem="oNW-2f-ClQ" secondAttribute="bottom" id="Tdq-pU-qbe"/>
+                            <constraint firstItem="Jai-6I-e08" firstAttribute="width" secondItem="gqb-jg-J2T" secondAttribute="width" id="YPV-Kc-s5g"/>
+                            <constraint firstItem="N9q-t5-LfC" firstAttribute="height" secondItem="2jt-TN-w7R" secondAttribute="height" multiplier="0.5" id="ZK5-EY-P0E"/>
                             <constraint firstItem="HoM-gz-2gO" firstAttribute="leading" secondItem="2jt-TN-w7R" secondAttribute="leading" id="ddK-Sb-SNn"/>
                             <constraint firstItem="N9q-t5-LfC" firstAttribute="leading" secondItem="2jt-TN-w7R" secondAttribute="leading" id="hle-hF-fsr"/>
-                            <constraint firstItem="SVk-tm-YT5" firstAttribute="width" secondItem="HoM-gz-2gO" secondAttribute="width" id="uqA-Fg-Vip"/>
-                            <constraint firstItem="SVk-tm-YT5" firstAttribute="height" secondItem="HoM-gz-2gO" secondAttribute="height" id="yth-T1-MhZ"/>
+                            <constraint firstItem="Jai-6I-e08" firstAttribute="top" secondItem="N9q-t5-LfC" secondAttribute="bottom" id="kIP-j8-0fT"/>
+                            <constraint firstItem="HoM-gz-2gO" firstAttribute="top" secondItem="gqb-jg-J2T" secondAttribute="bottom" id="mPr-kR-WMV"/>
+                            <constraint firstAttribute="trailing" secondItem="oNW-2f-ClQ" secondAttribute="trailing" id="n7X-Am-WN5"/>
+                            <constraint firstAttribute="trailing" secondItem="Jai-6I-e08" secondAttribute="trailing" id="vDj-fh-wld"/>
+                            <constraint firstItem="oNW-2f-ClQ" firstAttribute="leading" secondItem="HoM-gz-2gO" secondAttribute="trailing" id="woT-mL-GaH"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="mainImageView" destination="N9q-t5-LfC" id="V9x-6K-d1l"/>
+                        <outlet property="smallLeftImageView" destination="gqb-jg-J2T" id="B0e-TT-sQC"/>
+                        <outlet property="smallRightImageView" destination="Jai-6I-e08" id="1AO-zX-r2c"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lzj-gS-BOK" userLabel="First Responder" sceneMemberID="firstResponder"/>

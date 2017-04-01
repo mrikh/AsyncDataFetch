@@ -12,8 +12,6 @@
 
 @interface HTTPHandler(){
     
-    NSMutableArray *_requestsArray;
-    
     MRCache *_mrCache;
 }
 
@@ -44,9 +42,6 @@
         //initially 500mb
         _mrCache = [[MRCache alloc] initWithCapacity:1024 * 1024 * 500];
 //        [NSURLCache setSharedURLCache:[[NSURLCache alloc] initWithMemoryCapacity:1024 * 1024 * 500 diskCapacity:0 diskPath:@"MayankCache"]];
-        
-        //to keep track of requests in form of session tasks
-        _requestsArray = [NSMutableArray new];
     }
     
     return self;
@@ -95,16 +90,15 @@
 
 -(void)cancelRequestWithUrlString:(NSString *)urlString{
     
-    [_requestsArray enumerateObjectsUsingBlock:^(NSURLSessionDataTask *obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [[NSURLSession sharedSession] getAllTasksWithCompletionHandler:^(NSArray<__kindof NSURLSessionTask *> * _Nonnull tasks) {
         
-        if([obj.originalRequest.URL.absoluteString isEqualToString:urlString]){
+        [tasks enumerateObjectsUsingBlock:^(__kindof NSURLSessionTask * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
-            [_requestsArray removeObject:obj];
+            if (obj.originalRequest.URL.absoluteString) {
+                <#statements#>
+            }
             
-            [obj cancel];
-            
-            *stop = YES;
-        }
+        }];
     }];
 }
 
@@ -202,19 +196,14 @@
                     
                 }
             }
-            
-            //remove on completion
-            [_requestsArray removeObject:sessionTask];
         });
     }];
-    
-    //add session task to array
-    [_requestsArray addObject:sessionTask];
     
     [sessionTask resume];
     
     return sessionTask;
 }
+
 
 -(ContentType)getContentTypeOfString:(NSString *)string{
     

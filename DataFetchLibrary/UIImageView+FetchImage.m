@@ -12,7 +12,7 @@
 @implementation UIImageView (FetchImage)
 
 -(void)downloadImageFromUrlString:(NSString *)urlString andOnCompletion:(void(^)(UIImage *image, NSError *error))completion{
-
+    
     [[HTTPHandler sharedInstance] getParsedDataFromUrlString:urlString withCompletionHandler:^(id result, NSError *error) {
         
         if(!error){
@@ -36,7 +36,7 @@
 
 -(void)cancelRequestForUrlString:(NSString *)urlString{
     
-    [[HTTPHandler sharedInstance] cancelRequestForUrlString:urlString];
+    [[HTTPHandler sharedInstance] cancelRequestWithUrlString:urlString];
 }
 
 @end

@@ -6,6 +6,7 @@
 //  Copyright © 2017 Mayank Rikh. All rights reserved.
 //
 
+#import "UIImageView+FetchImage.h"
 #import "DetailViewController.h"
 #import "MRActivityIndicator.h"
 #import "HTTPHandler.h"
@@ -13,8 +14,10 @@
 @interface DetailViewController (){
     
     __weak IBOutlet UIImageView *mainImageView;
+    __weak IBOutlet UIImageView *smallLeftImageView;
+    __weak IBOutlet UIImageView *smallRightImageView;
     
-    MRActivityIndicator *_activityIndicator;
+    MRActivityIndicator *_activityIndicatorMain, *_activityIndicatorSmallLeft, *_activityIndicatorSmallRight;
 }
 
 @end
@@ -25,7 +28,11 @@
     
     [super viewDidLoad];
     
-    _activityIndicator = [[MRActivityIndicator alloc] initOnView:self.view withText:@"Downloading..."];
+    _activityIndicatorMain = [[MRActivityIndicator alloc] initOnView:mainImageView withText:@"Downloading main..."];
+    
+    _activityIndicatorSmallLeft = [[MRActivityIndicator alloc] initOnView:smallLeftImageView withText:@"Downloading left small..."];
+    
+    _activityIndicatorSmallRight = [[MRActivityIndicator alloc] initOnView:smallRightImageView withText:@"Downloading right small..."];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -37,25 +44,58 @@
 
 - (IBAction)startRequest:(UIButton *)sender {
 
-    [_activityIndicator startAnimating];
+    [_activityIndicatorMain startAnimating];
     
-    [[HTTPHandler sharedInstance] getParsedDataFromUrlString:self.backgroundImageString withCompletionHandler:^(id result, NSError *error) {
+    [_activityIndicatorSmallLeft startAnimating];
+    
+    [_activityIndicatorSmallRight startAnimating];
+    
+    //multiple resouces requesting same url
+    [self downloadRequestForImageView:mainImageView andOnCompletion:^{
         
-        if(!error && [result isKindOfClass:[UIImage class]]){
-            
-            [mainImageView setImage:result];
-        }
+        [_activityIndicatorMain stopAnimating];
+    }];
+    
+    [self downloadRequestForImageView:smallLeftImageView andOnCompletion:^{
         
-        [_activityIndicator stopAnimating];
+        [_activityIndicatorSmallLeft stopAnimating];
+    }];
+    
+    [self downloadRequestForImageView:smallRightImageView andOnCompletion:^{
         
+        [_activityIndicatorSmallRight stopAnimating];
     }];
 }
 
-- (IBAction)cancelRequest:(UIButton *)sender {
 
-    [_activityIndicator stopAnimating];
+- (IBAction)cancelSmallLeftAction:(UIButton *)sender {
     
-    [[HTTPHandler sharedInstance] cancelRequestWithUrlString:self.backgroundImageString];
+    [_activityIndicatorSmallLeft stopAnimating];
+    
+    [smallLeftImageView cancelRequestForUrlString:self.backgroundImageString];
+}
+
+
+- (IBAction)cancelSmallRightAction:(UIButton *)sender {
+    
+    [_activityIndicatorSmallRight stopAnimating];
+    
+    [smallRightImageView cancelRequestForUrlString:self.backgroundImageString];
+}
+
+#pragma mark - Private
+
+-(void)downloadRequestForImageView:(UIImageView *)imageView andOnCompletion:(void(^)(void))completion{
+
+    [imageView downloadImageFromUrlString:self.backgroundImageString andOnCompletion:^(UIImage *image, NSError *error) {
+        
+        if(!error){
+            
+            [imageView setImage:image];
+        }
+        
+        completion();
+    }];
 }
 
 @end
