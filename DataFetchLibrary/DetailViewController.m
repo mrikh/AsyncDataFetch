@@ -25,7 +25,7 @@
     
     [super viewDidLoad];
     
-    _activityIndicator = [[MRActivityIndicator alloc] initOnView:self.view withText:@"Fetching..."];
+    _activityIndicator = [[MRActivityIndicator alloc] initOnView:self.view withText:@"Downloading..."];
 }
 
 - (void)didReceiveMemoryWarning {

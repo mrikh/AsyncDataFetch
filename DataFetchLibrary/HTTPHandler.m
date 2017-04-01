@@ -6,11 +6,15 @@
 //  Copyright © 2016 Acknown Technologies. All rights reserved.
 //
 
+#import "MRCacheModel.h"
 #import "HTTPHandler.h"
+#import "MRCache.h"
 
 @interface HTTPHandler(){
     
     NSMutableArray *_requestsArray;
+    
+    MRCache *_mrCache;
 }
 
 @end
@@ -35,7 +39,14 @@
     
     if(self = [super init]){
         
-        [NSURLCache setSharedURLCache:[[NSURLCache alloc] initWithMemoryCapacity:1024 * 1024 * 500 diskCapacity:0 diskPath:@"MayankCache"]];
+        //comment below line and uncomment nsurlcache to use default ios cachce THAT DOESN'T FOLLOW LRU
+        
+        //initially 500mb
+        _mrCache = [[MRCache alloc] initWithCapacity:1024 * 1024 * 500];
+        
+//        [NSURLCache setSharedURLCache:[[NSURLCache alloc] initWithMemoryCapacity:1024 * 1024 * 500 diskCapacity:0 diskPath:@"MayankCache"]];
+        
+        
         
         //to keep track of requests in form of session tasks
         _requestsArray = [NSMutableArray new];
@@ -102,12 +113,24 @@
 
 -(void)setCacheWithSize:(NSUInteger)size{
     
-    [[NSURLCache sharedURLCache] setMemoryCapacity:size];
+//    [[NSURLCache sharedURLCache] setMemoryCapacity:size];
+    
+    _mrCache.totalCacheCapacity = size;
 }
 
 #pragma mark - Private methods
 
 -(NSURLSessionDataTask *)sendRequestWithUrlString:(NSString *)string andHeaders:(NSDictionary *)headers andBody:(NSDictionary *)body andRequestType:(RequestType)requestType onSuccess:(void (^)(NSData *data, ContentType contentType))success andFailure:(void (^)(NSError *error))failure{
+    
+    MRCacheModel *tempModel = [_mrCache getModelForRequest:string];
+    
+    //if found then it means it exists in cache
+    if(tempModel){
+            
+        success(tempModel.responseData,[self getContentTypeOfString:tempModel.contentType]);
+        
+        return nil;
+    }
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:string]];
     
@@ -128,7 +151,7 @@
             [request addValue:obj forHTTPHeaderField:key];
         }];
     }
-    
+ 
     NSData *data;
     
     if(body){
@@ -151,7 +174,20 @@
             if (!error && [(NSHTTPURLResponse *)response statusCode]==200) {
                
                 if (success) {
-                    success(data, [self getContentTypeOfRequest:(NSHTTPURLResponse *)response]);
+                    
+                    NSString *responseType = [((NSHTTPURLResponse *)response).allHeaderFields valueForKey:@"Content-Type"];
+                    
+                     //as one image returns length -1, we don't cache it cause it can be of any size and server doesn't know actual size which may exceed total cache size
+                    if(response.expectedContentLength > 0){
+                        
+                        //add object to dictionary
+                        //as model hasn't been used even once from memory we set usageCounter 0 initially
+                        MRCacheModel *tempModel = [[MRCacheModel alloc] initWithData:data andContentSize:response.expectedContentLength andContentType:responseType andUsageCounter:0 andRequest:request.URL.absoluteString];
+                        
+                        [_mrCache addIntoCache:tempModel];
+                    }
+                    
+                    success(data, [self getContentTypeOfString:responseType]);
                 }
             }
             else{
@@ -181,23 +217,22 @@
     return sessionTask;
 }
 
--(ContentType)getContentTypeOfRequest:(NSHTTPURLResponse *)response{
+-(ContentType)getContentTypeOfString:(NSString *)string{
     
     ContentType contentType = DATA;
-    
-    NSString *tempString = [response.allHeaderFields valueForKey:@"Content-Type"];
 
-    if([tempString containsString:@"text/plain"]){
+    if([string containsString:@"text/plain"]){
         
         contentType = JSON;
     
-    }else if([tempString containsString:@"image/"]){
+    }else if([string containsString:@"image/"]){
         
         contentType = IMAGE;
     }
     
     return contentType;
 }
+
 
 #pragma mark Data Conversion
 
