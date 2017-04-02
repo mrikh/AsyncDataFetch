@@ -19,6 +19,14 @@ The class is a singleton class that offers two methods for you to use to fetch r
 
 If you want the `NSData` format in the response, then use the first method and the second method will parse the data into the appropriate format based on Content-Type in the header of the response. 
 
+To add more data types, you need to add the appropriate enum inside the header file and the string for that contentType inside the private method:
+```
+-(ContentType)getContentTypeOfString:(NSString *)string
+```
+and also in the `getParsedData` method you need to check the value of the `ContentType` enum and handle the data format.
+
+### Cancel Request:
+
 If you want to create a cancellable request, you need to pass in a unique identifier to make that request unique in case there are multiple requests from the same URL going in. If there is only one request with a particular URL you can get away by just passing the URL to cancel it and nil in the identifier. The method to cancel:
 
 ```
@@ -44,3 +52,6 @@ Now advantage of using said category is to cancel the request all you have to do
 [imageView cancelRequestForUrlString:self.backgroundImageString];
 ```
 You don't have to set a unique identifier as the we automatically set it on our own using the time stamp inside of the category. And since the request is now assosciated with the `UIImageView`, the timestamp is stored across the lifetime of the object.
+
+
+
