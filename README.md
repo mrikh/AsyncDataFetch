@@ -51,6 +51,6 @@ Now advantage of using said category is to cancel the request all you have to do
 ```
 [imageView cancelRequestForUrlString:self.backgroundImageString];
 ```
-You don't have to set a unique identifier as the we automatically set it on our own using the time stamp inside of the category. And since the request is now assosciated with the `UIImageView`, the timestamp is stored across the lifetime of the object.
+You don't have to set a unique identifier as the we automatically set it on our own using the time stamp inside of the category. And since the request is now assosciated with the `UIImageView`, the timestamp is stored.
 
 **Note:** For caching a "timeOfUse" property has been added to the objects but not used currently. It was added in case we need to store in the disk memory later on. Custom cache(`NSMutableDictionary`) was created as the apple cache doesn't necessarily follow LRU algorithm.  
