@@ -20,10 +20,10 @@
 		461A0F571E8D89E200FD3512 /* PinterestModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 461A0F561E8D89E200FD3512 /* PinterestModel.m */; };
 		461A0F621E90273600FD3512 /* SplitViewAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = 461A0F611E90273600FD3512 /* SplitViewAnimation.m */; };
 		461A0F651E902BA300FD3512 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 461A0F641E902BA300FD3512 /* Utilities.m */; };
-		461A0F701E90E14900FD3512 /* HomeViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 461A0F6F1E90E14900FD3512 /* HomeViewControllerTests.m */; };
 		461A0F741E90EE0E00FD3512 /* ListButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 461A0F731E90EE0E00FD3512 /* ListButton.m */; };
 		461A0F761E9129A500FD3512 /* fontawesome-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 461A0F751E91264D00FD3512 /* fontawesome-webfont.ttf */; };
 		461A0F791E912DC100FD3512 /* AnimatorNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 461A0F781E912DC100FD3512 /* AnimatorNavigationController.m */; };
+		461A0F7D1E914A4900FD3512 /* DetailViewControllerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 461A0F7C1E914A4900FD3512 /* DetailViewControllerTests.m */; };
 		4665946B1E8F78DA008BD657 /* UIImageView+FetchImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 4665946A1E8F78DA008BD657 /* UIImageView+FetchImage.m */; };
 		4665946F1E8F7E7F008BD657 /* UIView+AutoConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 4665946E1E8F7E7F008BD657 /* UIView+AutoConstraint.m */; };
 		466594751E8F821B008BD657 /* MRCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 466594741E8F821B008BD657 /* MRCache.m */; };
@@ -77,12 +77,12 @@
 		461A0F611E90273600FD3512 /* SplitViewAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplitViewAnimation.m; sourceTree = "<group>"; };
 		461A0F631E902BA300FD3512 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
 		461A0F641E902BA300FD3512 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
-		461A0F6F1E90E14900FD3512 /* HomeViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewControllerTests.m; sourceTree = "<group>"; };
 		461A0F721E90EE0E00FD3512 /* ListButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListButton.h; sourceTree = "<group>"; };
 		461A0F731E90EE0E00FD3512 /* ListButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListButton.m; sourceTree = "<group>"; };
 		461A0F751E91264D00FD3512 /* fontawesome-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "fontawesome-webfont.ttf"; sourceTree = "<group>"; };
 		461A0F771E912DC100FD3512 /* AnimatorNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnimatorNavigationController.h; sourceTree = "<group>"; };
 		461A0F781E912DC100FD3512 /* AnimatorNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnimatorNavigationController.m; sourceTree = "<group>"; };
+		461A0F7C1E914A4900FD3512 /* DetailViewControllerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewControllerTests.m; sourceTree = "<group>"; };
 		466594691E8F78DA008BD657 /* UIImageView+FetchImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+FetchImage.h"; sourceTree = "<group>"; };
 		4665946A1E8F78DA008BD657 /* UIImageView+FetchImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+FetchImage.m"; sourceTree = "<group>"; };
 		4665946D1E8F7E7F008BD657 /* UIView+AutoConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+AutoConstraint.h"; sourceTree = "<group>"; };
@@ -173,9 +173,9 @@
 		461A0F2C1E8D806300FD3512 /* DataFetchLibraryTests */ = {
 			isa = PBXGroup;
 			children = (
+				461A0F7C1E914A4900FD3512 /* DetailViewControllerTests.m */,
 				461A0F2D1E8D806300FD3512 /* DataFetchLibraryTests.m */,
 				461A0F2F1E8D806300FD3512 /* Info.plist */,
-				461A0F6F1E90E14900FD3512 /* HomeViewControllerTests.m */,
 			);
 			path = DataFetchLibraryTests;
 			sourceTree = "<group>";
@@ -466,7 +466,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				461A0F2E1E8D806300FD3512 /* DataFetchLibraryTests.m in Sources */,
-				461A0F701E90E14900FD3512 /* HomeViewControllerTests.m in Sources */,
+				461A0F7D1E914A4900FD3512 /* DetailViewControllerTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

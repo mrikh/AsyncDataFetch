@@ -121,6 +121,7 @@
 
 -(void)fetchRequest{
     
+    //as paging not implemented we remove all objects on refetching
     if(_dataArray.count > 0){
         
         [_dataArray removeAllObjects];
@@ -130,7 +131,7 @@
     
     NSString *urlStringToSearch = @"http://pastebin.com/raw/wgkJgazE";
     
-    [[HTTPHandler sharedInstance] getParsedDataFromUrlString:urlStringToSearch andUniqueIdentifier:@"1" withCompletionHandler:^(id result , NSError *error) {
+    [[HTTPHandler sharedInstance] getParsedDataFromUrlString:urlStringToSearch andUniqueIdentifier:nil withCompletionHandler:^(id result , NSError *error) {
         
         if(!error){
             

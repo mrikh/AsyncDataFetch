@@ -202,7 +202,10 @@
         });
     }];
     
-    [sessionTask setTaskDescription:identifier];
+    if(identifier){
+        
+        [sessionTask setTaskDescription:identifier];
+    }
     
     [sessionTask resume];
     

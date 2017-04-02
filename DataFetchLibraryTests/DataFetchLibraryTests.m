@@ -7,6 +7,7 @@
 //
 
 #import <XCTest/XCTest.h>
+#import "HTTPHandler.h"
 
 @interface DataFetchLibraryTests : XCTestCase
 
@@ -22,6 +23,25 @@
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
+}
+
+-(void)testDataTask{
+    
+    XCTestExpectation *expectation = [self expectationWithDescription:@"asynchronous request"];
+    
+    NSString *url = @"http://pastebin.com/raw/wgkJgazE";
+    
+    [[HTTPHandler sharedInstance] getParsedDataFromUrlString:url andUniqueIdentifier:nil withCompletionHandler:^(id result, NSError *error) {
+        
+        XCTAssertNil(error, @"dataTaskWithURL error %@", error);
+        
+        XCTAssert(result, @"result nil");
+        
+        [expectation fulfill];
+    }];
+    
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:nil];
 }
 
 - (void)testExample {
