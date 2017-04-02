@@ -95,14 +95,14 @@
     float imgRatio = actualWidth/actualHeight;
     float maxRatio = finalWidth/finalHeight;
     
-    if(imgRatio < maxRatio)
-    {
+    if(imgRatio < maxRatio){
+        
         imgRatio = finalHeight / actualHeight;
         actualWidth = imgRatio * actualWidth;
         actualHeight = finalHeight;
-    }
-    else
-    {
+        
+    }else{
+        
         imgRatio = finalWidth / actualWidth;
         actualHeight = imgRatio * actualHeight;
         actualWidth = finalWidth;

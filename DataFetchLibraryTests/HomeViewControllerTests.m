@@ -27,6 +27,28 @@
     _homeViewController = [storyboard instantiateViewControllerWithIdentifier:@"homeViewController"];
 }
 
+- (void)testDataTask
+{
+    XCTestExpectation *expectation = [self expectationWithDescription:@"asynchronous request"];
+    
+    NSURL *url = [NSURL URLWithString:@"http://www.apple.com"];
+    NSURLSessionDataTask *task = [[NSURLSession sharedSession] dataTaskWithURL:url completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        XCTAssertNil(error, @"dataTaskWithURL error %@", error);
+        
+        if ([response isKindOfClass:[NSHTTPURLResponse class]]) {
+            NSInteger statusCode = [(NSHTTPURLResponse *) response statusCode];
+            XCTAssertEqual(statusCode, 200, @"status code was not 200; was %d", statusCode);
+        }
+        
+        XCTAssert(data, @"data nil");
+        
+        [expectation fulfill];
+    }];
+    [task resume];
+    
+    [self waitForExpectationsWithTimeout:10.0 handler:nil];
+}
+
 - (void)tearDown {
     // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];

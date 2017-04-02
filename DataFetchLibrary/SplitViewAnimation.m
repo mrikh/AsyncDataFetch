@@ -24,13 +24,13 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext
-{
-    return 0.6f;
+- (NSTimeInterval)transitionDuration:(id <UIViewControllerContextTransitioning>)transitionContext{
+    
+    return 0.5f;
 }
 
-- (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext
-{
+- (void)animateTransition:(id <UIViewControllerContextTransitioning>)transitionContext{
+    
     UIViewController* toController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
     UIView* container = [transitionContext containerView];
@@ -52,11 +52,17 @@
     [container addSubview:secondImageView];
     
     [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
+        
         [topImageView setFrame:CGRectMake(0, topImageView.frame.origin.y - topImageView.frame.size.height, topImageView.frame.size.width, topImageView.frame.size.height)];
+        
         [secondImageView setFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height, secondImageView.frame.size.width, secondImageView.frame.size.height)];
+        
     } completion:^(BOOL finished) {
+        
         [topImageView removeFromSuperview];
+        
         [secondImageView removeFromSuperview];
+        
         [transitionContext completeTransition:![transitionContext transitionWasCancelled]];
     }];
 }
