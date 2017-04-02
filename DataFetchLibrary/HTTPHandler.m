@@ -95,11 +95,22 @@
         
         [tasks enumerateObjectsUsingBlock:^(__kindof NSURLSessionTask * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             
-            if ([obj.originalRequest.URL.absoluteString isEqualToString:urlString] && [obj.taskDescription isEqualToString:uniqueIdentifier]) {
+            if ([obj.originalRequest.URL.absoluteString isEqualToString:urlString]) {
                 
-                [obj cancel];
-                
-                *stop = YES;
+                if(uniqueIdentifier){
+                    
+                    if([obj.taskDescription isEqualToString:uniqueIdentifier]){
+                        
+                        [obj cancel];
+                        
+                        *stop = YES;
+                    }
+                }else{
+                    
+                    [obj cancel];
+                    
+                    *stop = YES;
+                }
             }
         }];
     }];
