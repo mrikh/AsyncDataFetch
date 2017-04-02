@@ -56,5 +56,7 @@ You don't have to set a unique identifier as the we automatically set it on our 
 **Note:** For caching a "timeOfUse" property has been added to the objects but not used currently. It was added in case we need to store in the disk memory later on. Custom cache(`NSMutableDictionary`) was created as the apple cache doesn't necessarily follow LRU algorithm.  
 
 After the "Home Screen" just click on a cell to open the detailed view where you will see a "+" button. Click on it to show more options. One of the buttons downloads **all** the images and other two cancel the downloading of images the smaller two `UIImageView`
+
 Visual manual:
 
+![alt tag](https://media.giphy.com/media/3o7bu7llrIVkwKEnao/giphy.gif)
