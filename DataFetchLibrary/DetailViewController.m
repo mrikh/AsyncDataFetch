@@ -10,16 +10,15 @@
 #import "DetailViewController.h"
 #import "MRActivityIndicator.h"
 #import "HTTPHandler.h"
+#import "ListButton.h"
 #import "Utilities.h"
 
-@interface DetailViewController (){
+@interface DetailViewController ()<ListButtonDelegate>{
     
     __weak IBOutlet UIImageView *mainImageView;
     __weak IBOutlet UIImageView *smallLeftImageView;
     __weak IBOutlet UIImageView *smallRightImageView;
-    __weak IBOutlet UIButton *cancelFirstButton;
-    __weak IBOutlet UIButton *cancelSecondButton;
-    __weak IBOutlet UIButton *startRequestButton;
+    __weak IBOutlet ListButton *listButton;
     
     MRActivityIndicator *_activityIndicatorMain, *_activityIndicatorSmallLeft, *_activityIndicatorSmallRight;
 }
@@ -32,18 +31,22 @@
     
     [super viewDidLoad];
     
-    _activityIndicatorMain = [[MRActivityIndicator alloc] initOnView:mainImageView withText:@"Downloading main..."];
+    _activityIndicatorMain = [[MRActivityIndicator alloc] initOnView:mainImageView withText:@"Downloading..."];
     
-    _activityIndicatorSmallLeft = [[MRActivityIndicator alloc] initOnView:smallLeftImageView withText:@"Downloading left small..."];
+    _activityIndicatorSmallLeft = [[MRActivityIndicator alloc] initOnView:smallLeftImageView withText:@"Downloading..."];
     
-    _activityIndicatorSmallRight = [[MRActivityIndicator alloc] initOnView:smallRightImageView withText:@"Downloading right small..."];
+    _activityIndicatorSmallRight = [[MRActivityIndicator alloc] initOnView:smallRightImageView withText:@"Downloading..."];
     
     [self setupViews:mainImageView];
     [self setupViews:smallLeftImageView];
     [self setupViews:smallRightImageView];
-    [self setupViews:cancelFirstButton];
-    [self setupViews:startRequestButton];
-    [self setupViews:cancelSecondButton];
+
+    //buttons added in array have tag corresponding to position of their title
+    //using fontawesome font as icons
+    listButton.textArray = @[@"",@"",@""];
+#warning cases such as too many buttons being added are not handled and if button is in top part of screen how buttons should appear isn't handled.
+    
+    listButton.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,11 +54,9 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-
 #pragma mark - Button Action
 
-- (IBAction)startRequest:(UIButton *)sender {
+- (void)startRequest{
 
     [_activityIndicatorMain startAnimating];
     
@@ -80,8 +81,12 @@
     }];
 }
 
+- (IBAction)showButton:(UIButton *)sender{
+    
+    [sender setSelected:!sender.isSelected];
+}
 
-- (IBAction)cancelSmallLeftAction:(UIButton *)sender {
+- (void)cancelSmallLeftAction{
     
     [smallLeftImageView cancelRequestForUrlString:self.backgroundImageString];
     
@@ -89,7 +94,7 @@
 }
 
 
-- (IBAction)cancelSmallRightAction:(UIButton *)sender {
+- (void)cancelSmallRightAction{
     
     [smallRightImageView cancelRequestForUrlString:self.backgroundImageString];
     
@@ -100,7 +105,7 @@
 
 -(void)setupViews:(UIView *)view{
     
-    [view.layer setBorderColor:[UIColor whiteColor].CGColor];
+    [view.layer setBorderColor:[UIColor blackColor].CGColor];
     
     [view.layer setBorderWidth:1.0f];
 }
@@ -117,5 +122,25 @@
         completion();
     }];
 }
+
+#pragma mark Delegate
+
+-(void)buttonPressed:(UIButton *)button{
+    
+    switch (button.tag) {
+        case 0:
+            [self startRequest];
+            break;
+        case 1:
+            [self cancelSmallLeftAction];
+            break;
+        case 2:
+            [self cancelSmallRightAction];
+            break;
+        default:
+            break;
+    }
+}
+
 
 @end

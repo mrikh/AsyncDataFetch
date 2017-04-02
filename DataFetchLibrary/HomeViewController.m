@@ -6,7 +6,6 @@
 //  Copyright © 2017 Mayank Rikh. All rights reserved.
 //
 
-#import "NavigationControllerAnimator.h"
 #import "UIImageView+FetchImage.h"
 #import "UIView+AutoConstraint.h"
 #import "DetailViewController.h"
@@ -51,14 +50,6 @@
     [[HTTPHandler sharedInstance] setCacheWithSize:4 * 1024 * 1024];
     
     [self fetchRequest];
-}
-
-
--(void)viewWillAppear:(BOOL)animated{
-    
-    [super viewWillAppear:animated];
-    
-    [self.navigationController setDelegate:[NavigationControllerAnimator sharedInstance]];
 }
 
 - (void)didReceiveMemoryWarning {
